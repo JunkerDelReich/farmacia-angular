@@ -1,0 +1,69 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Cadastros</mat-card-title>
+        <mat-card-subtitle>Remédio</mat-card-subtitle>
+    </mat-card-header>
+    <div class="example-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Preço</mat-label>
+            <input [formControl]="preco" matInput required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput [formControl]="descricao" required></textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Foto</mat-label>
+            <input matInput [formControl]="foto" required>
+        </mat-form-field>
+
+        <br>
+        <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+        <button mat-raised-button color="warn" (click)="clear()">Cancelar</button>
+    </div>
+</mat-card>
+<br>
+<mat-card>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="preco">
+            <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.preco}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="descricao">
+            <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="foto">
+            <mat-header-cell *matHeaderCellDef> Foto </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.foto}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+            <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="primary" (click)="onEdit(element)">
+                <mat-icon>Editar</mat-icon>
+              </button>
+                <button mat-mini-fab color="primary" (click)="delete(element)">
+                <mat-icon>Excluir</mat-icon>
+              </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</mat-card>
